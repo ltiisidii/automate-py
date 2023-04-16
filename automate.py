@@ -34,3 +34,4 @@ print('[+] Getting alive hosts')
 
 subprocess.call(f'httpx -l' + ' ' + subs + '/subdomains.txt' + ' ' + '-silent -threads 9000 -timeout 30 | anew' + ' ' + subs + '/hosts.txt'
                 , shell=True)
+
