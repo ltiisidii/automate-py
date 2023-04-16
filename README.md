@@ -1,4 +1,3 @@
-[![codecov](https://codecov.io/gh/ltiisidii/automate-py/branch/master/graph/badge.svg)](https://codecov.io/gh/ltiisidii/automate-py)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c12f6d6b169d85d433f7/maintainability)](https://codeclimate.com/github/ltiisidii/automate-py/maintainability)
 [![License](https://img.shields.io/github/license/ltiisidii/automate-py)](https://github.com/ltiisidii/automate-py/tree/master/LICENSE)
 
