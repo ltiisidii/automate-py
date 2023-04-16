@@ -1,3 +1,7 @@
+[![codecov](https://codecov.io/gh/ltiisidii/automate-py/branch/master/graph/badge.svg)](https://codecov.io/gh/ltiisidii/automate-py)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c12f6d6b169d85d433f7/maintainability)](https://codeclimate.com/github/ltiisidii/automate-py/maintainability)
+[![License](https://img.shields.io/github/license/ltiisidii/automate-py)](https://github.com/ltiisidii/automate-py/tree/master/LICENSE)
+
 # Automate-py
 
 Automate-py is a Python-based automation tool designed for bug bounty hunters who are new to programming or just starting out in the field. With this tool, you can automate your recon process, saving time and improving your efficiency in identifying vulnerabilities.
