@@ -46,19 +46,16 @@ class Subdomains:
             print(f'Error combining and sorting subdomains: {e}')
 
 
-        # Alive hosts
-        print('[+] Getting alive hosts')
+        # Check for publicly accessible hosts using httpx
+        print('[+] Checking for publicly accessible hosts')
         try:
-            subprocess.call(f'httpx -l' + ' ' + self.subs + '/subdomains.txt' + ' ' + '-silent -threads 9000 -timeout 30 | anew' + ' ' + self.subs + '/hosts.txt'
-                        , shell=True)
+            subprocess.call(f'httpx -l {self.subs}/subdomains.txt -silent -threads 9000 -timeout 30 -status-code 200 | cut -d " " -f 1 | sort -u > {self.subs}/public_hosts.txt', shell=True)
         except subprocess.CalledProcessError as e:
-            print(f'Error getting alive hosts: {e}')
+            print(f'Error checking for publicly accessible hosts: {e}')
 
         # Get IPs with dnsprobe
         print('[+] Getting IPs')
         try:
-            subprocess.call(f'dnsx -l' + ' ' + self.subs + '/hosts.txt' + ' ' + '-o' + ' ' + self.subs + '/ips.txt'
-                        , shell=True)
+            subprocess.call(f'dnsx -resp-only -l {self.subs}/subdomains.txt > {self.subs}/ips-from-dns.txt', shell=True)
         except subprocess.CalledProcessError as e:
             print(f'Error getting IPs: {e}')
-            

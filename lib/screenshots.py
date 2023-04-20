@@ -2,19 +2,19 @@ import subprocess
 from pathlib import Path
 
 class ScreenshotCapture:
-    def __init__(self, hosts_file="hosts.txt", results_dir="results", gowitness_threads=50):
+    def __init__(self, domain, hosts_file="hosts.txt", results_dir="results/", gowitness_threads=50):
+        self.domain = domain
         self.hosts_file = hosts_file
         self.results_dir = results_dir
         self.gowitness_threads = gowitness_threads
     
     def run(self):
-        hosts = self.results_dir + "/subdomains"
-        screenshots = self.results_dir + "/screenshots"
+        hosts = f"{self.domain}/subdomains/"
+        screenshots = f"{self.results_dir}{self.domain}/screenshots/"
         Path(screenshots).mkdir(parents=True, exist_ok=True)
         
         print('[+] Getting screenshots')
         try:
-            subprocess.call(f'gowitness file -f {hosts}/{self.hosts_file} --output {screenshots} --disable-logging -t {self.gowitness_threads}', shell=True)
+            subprocess.call(f'gowitness file -f {hosts}/{self.hosts_file} -P {screenshots} --disable-logging -t {self.gowitness_threads} --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"', shell=True)
         except subprocess.CalledProcessError as e:
             print(f'Error running gowitness: {e}')
-                   
