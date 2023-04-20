@@ -162,3 +162,6 @@ notes
 results/
 automate.py
 resume.cfg
+gowitness.sqlite3
+google-chrome-stable_current_amd64.deb
+chromedriver_linux64.zip

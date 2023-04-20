@@ -15,6 +15,6 @@ class ScreenshotCapture:
         
         print('[+] Getting screenshots')
         try:
-            subprocess.call(f'gowitness file -f {hosts}/{self.hosts_file} -P {screenshots} --disable-logging -t {self.gowitness_threads} --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"', shell=True)
+            subprocess.call(f'gowitness file -f {hosts}/{self.hosts_file} -t {self.gowitness_threads} --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" -P {screenshots} --chrome-path "/usr/bin/google-chrome-stable"', shell=True)
         except subprocess.CalledProcessError as e:
             print(f'Error running gowitness: {e}')
