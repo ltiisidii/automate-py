@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 class HostDetection:    
-    def __init__(self, subs_file, results_dir, httpx_threads, httpx_ratelimit, httpx_timeout):
+    def __init__(self, subs_file, results_dir, httpx_threads=100, httpx_ratelimit=50, httpx_timeout=10):
         self.subs_file = subs_file
         self.results_dir = results_dir
         self.httpx_threads = httpx_threads
@@ -10,7 +10,7 @@ class HostDetection:
         self.httpx_timeout = httpx_timeout
     
     def run(self):
-        subs = self.results_dir + "/assets/subdomains"
+        subs = self.results_dir + "results"
         hosts = self.results_dir + "/hosts"
         Path(hosts).mkdir(parents=True, exist_ok=True)
         

@@ -13,6 +13,8 @@ class IPDiscovery:
         
         print('[+] Getting IPs')
         try:
-            subprocess.check_call(f'dnsprobe -l {hosts}/{self.hosts_file} | sed \'s/^[^[:space:]]*[[:space:]]*//\' | sed \'/^$/d\' | sort -u > {ips}/dnsprobe.txt', shell=True)
+            #subprocess.check_call(f'dnsprobe -l {hosts}/{self.hosts_file} | sed \'s/^[^[:space:]]*[[:space:]]*//\' | sed \'/^$/d\' | sort -u > {ips}/dnsprobe.txt', shell=True)
+            subprocess.check_call(f"dnsx -l {hosts}/{self.hosts_file} -silent -resp-only | awk '{{print $$NF}}' | sort -u > {ips}/dnsx-ips.txt", shell=True)
+
         except subprocess.CalledProcessError as e:
             print(f'Error running dnsprobe: {e}')

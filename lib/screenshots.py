@@ -2,13 +2,13 @@ import subprocess
 from pathlib import Path
 
 class ScreenshotCapture:
-    def __init__(self, hosts_file, results_dir, gowitness_threads):
+    def __init__(self, hosts_file="hosts.txt", results_dir="results", gowitness_threads=50):
         self.hosts_file = hosts_file
         self.results_dir = results_dir
         self.gowitness_threads = gowitness_threads
     
     def run(self):
-        hosts = self.results_dir + "/hosts"
+        hosts = self.results_dir + "/subdomains"
         screenshots = self.results_dir + "/screenshots"
         Path(screenshots).mkdir(parents=True, exist_ok=True)
         

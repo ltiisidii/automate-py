@@ -33,7 +33,7 @@ class Subdomains:
 
         print('[+] 2- Running amass')
         try:
-            subprocess.call(f'amass enum -passive -d' + ' ' + self.domain + ' ' + self.amass_config + ' ' + '-timeout' + self.amass_enum_timeout + ' ' + '-o' + ' ' + self.subs + '/amassp.txt'
+            subprocess.call(f'amass enum -passive -d' + ' ' + self.domain + ' ' + '-timeout ' + str(self.amass_enum_timeout) + ' ' + '-o ' + ' ' + self.subs + '/amass-passive.txt'
                         , shell=True)
         except subprocess.CalledProcessError as e:
             print(f'Error running amass: {e}')

@@ -10,10 +10,10 @@ if __name__ == "__main__":
     subdomains = Subdomains(domain)
     subdomains.run()
 
-    ipdiscovery = IPDiscovery(domain)
+    ipdiscovery = IPDiscovery(subdomains.subs+'/hosts.txt', subdomains.resultdir)
     ipdiscovery.run()
 
-    hostdetection = HostDetection(domain)
+    hostdetection = HostDetection(subdomains.subs+'/hosts.txt', subdomains.resultdir)
     hostdetection.run()
 
     screenshotcapture = ScreenshotCapture(domain)
