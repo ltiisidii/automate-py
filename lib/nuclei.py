@@ -2,7 +2,8 @@ import subprocess
 from pathlib import Path
 
 class Nuclei:
-    def __init__(self, hosts_file, results_dir, threads=50, rate_limit=150):
+    def __init__(self, domain, hosts_file, results_dir="results/", threads=10, rate_limit=15):
+        self.domain = domain
         self.hosts_file = hosts_file
         self.results_dir = results_dir
         self.threads = threads
@@ -28,5 +29,14 @@ class Nuclei:
             "tokens",
             "vulnerabilities",
         ]
+        severity_map = {
+            "informational": "informative.txt",
+            "low": "low.txt",
+            "medium": "medium.txt",
+            "high": "high.txt",
+            "critical": "critical.txt"
+        }
         for template in templates:
-            self.run_template(template, f"{template}.txt")
+            for severity, file_name in severity_map.items():
+                output_file = f"{self.domain}/nuclei/{severity}/{template}_{file_name}"
+                self.run_template(template, output_file)
