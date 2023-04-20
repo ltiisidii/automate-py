@@ -1,13 +1,20 @@
 import subprocess
+import configparser
 from pathlib import Path
 
 class Nuclei:
-    def __init__(self, domain, hosts_file, results_dir="results/", threads=10, rate_limit=15):
-        self.domain = domain
-        self.hosts_file = hosts_file
-        self.results_dir = results_dir
-        self.threads = threads
-        self.rate_limit = rate_limit
+    def __init__(self, subdomains_obj, config_file="config/automate-py.ini"):
+        config = configparser.ConfigParser()
+        config.read(config_file)
+        
+        self.domain = subdomains_obj.domain
+        self.hosts_file = config.get("nuclei", "hosts_file").replace("{domain}", self.domain)
+        self.results_dir = config.get("nuclei", "results_dir").replace("{domain}", self.domain)
+        self.threads = config.getint("nuclei", "threads")
+        self.rate_limit = config.getint("nuclei", "rate_limit")
+
+        # Create directories
+        Path(self.results_dir).mkdir(parents=True, exist_ok=True)
 
     def run_template(self, template_name, output_file):
         print(f"[+] Running Nuclei Template {template_name}")
