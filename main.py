@@ -11,7 +11,8 @@ if __name__ == "__main__":
     screenshotcapture = ScreenshotCapture(domain)
     screenshotcapture.run()
 
-    nuclei = Nuclei(domain=domain)
+    subdomains_obj = Subdomains(domain)
+    nuclei = Nuclei(domain, subdomains_obj=subdomains_obj)
     nuclei.run_template("cves", "cves.txt")
     nuclei.run_template("dns", "dns.txt")
     nuclei.run_template("files", "files.txt")

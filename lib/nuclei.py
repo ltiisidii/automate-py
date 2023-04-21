@@ -3,13 +3,13 @@ import configparser
 from pathlib import Path
 
 class Nuclei:
-    def __init__(self, domain, config_file="config/automate-py.ini"):
+    def __init__(self, domain, subdomains_obj, config_file="config/automate-py.ini"):
         config = configparser.ConfigParser()
         config.read(config_file)
         
         self.domain = domain
-        self.hosts_file = config.get("nuclei", "hosts_file").replace("{domain}", self.domain)
-        self.results_dir = config.get("nuclei", "results_dir").replace("{domain}", self.domain)
+        self.hosts_file = f"{subdomains_obj.subs}/public_hosts.txt"
+        self.results_dir = f"{subdomains_obj.subs}/nuclei"
         self.threads = config.getint("nuclei", "threads")
         self.rate_limit = config.getint("nuclei", "rate_limit")
 
